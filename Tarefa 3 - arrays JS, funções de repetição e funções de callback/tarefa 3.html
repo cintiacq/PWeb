@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+      <meta charset="UTF-8"> 
+   
+   </head>
+
+   <body>
+      <div id="meu amor">
+        <button id="botaoCarregar">Carregando cervejas...</button>
+        <button id="botaoOrdenar">Ordenar cervejas...</button>
+        <button id="botaoEmbaralhado">Embaralhar cervejas...</button>
+      </div>            
+   </body>   
+
+   <script>
+
+      let cervejas = ["<tr> <td class='cervejas'> Guiness </td> </tr>",
+    "<tr> <td class='cervejas'> Desperados </td> </tr>",
+    "<tr> <td class='cervejas'> Becks </td> </tr>"]      
+
+      function carregarDiv(list){
+         let div = document.getElementById("meu amor")
+         //let cervejasHtml = [`<h1>${cervejas[0]}</h1>`,`<h1>${cervejas[1]}</h1>`, `<h1>${cervejas[2]}</h1>`] 
+         let cervejasHtml = `<table border="1">${list.join("\n")}</table>`
+         div.innerHTML = cervejasHtml
+
+      }
+
+      function ordenado(list){
+        carregarDiv(cervejas.sort())
+      }
+
+      function naoOrdenado(list){
+        carregarDiv(cervejas)
+      }
+
+      function embaralhado(list){
+        carregarDiv(shuffle(cervejas))
+      }
+
+      function shuffle(o) {
+       for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+       return o;
+    }
+    
+      let botao = document.getElementById("botaoCarregar")
+      botao.addEventListener("click", naoOrdenado)      
+      
+      let botaoOrdenar = document.getElementById("botaoOrdenar")
+      botaoOrdenar.addEventListener("click", ordenado)   
+      
+      let botaoEmbaralhado = document.getElementById("botaoEmbaralhado")
+      botaoEmbaralhado.addEventListener("click", embaralhado) 
+
+   </script>
+
+</html>
