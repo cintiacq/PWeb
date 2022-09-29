@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+      <meta charset="UTF-8"> 
+   
+   </head>
+
+   <body>
+      <div id="meu amor">
+        <a id="botaoCarregar">Carregando vinhos...</a>
+        <a id="botaoOrdenar">Ordenar vinhos...</a>
+        <a id="botaoEmbaralhado">Embaralhar vinhos...</a>
+      </div>            
+   </body>   
+
+   <script>
+
+      let vinhos = ["<tr> <td class='vinhos'> Romanée-Conti </td> </tr>",
+    "<tr> <td class='vinhos'> Cabernet Sauvignon </td> </tr>",
+    "<tr> <td class='vinhos'> Pérgola </td> </tr>"]      
+
+    const carregarDiv = (list) => {
+         let div = document.getElementById("meu amor")
+         let vinhosHtml = `<table border="1">${list.join("\n")}</table>`
+         div.innerHTML = vinhosHtml
+
+      }
+
+      const ordenado = () => {
+        carregarDiv(vinhos.sort())
+      }
+
+      const naoOrdenado = () => {
+        carregarDiv(vinhos)
+      }
+
+      const embaralhado = () => {
+        carregarDiv(shuffle(vinhos))
+      }
+
+      const shuffle = (o) => {
+       for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+       return o;
+    }
+    
+      let botao = document.getElementById("botaoCarregar")
+      botao.addEventListener("click", naoOrdenado)      
+      
+      let botaoOrdenar = document.getElementById("botaoOrdenar")
+      botaoOrdenar.addEventListener("click", ordenado)   
+      
+      let botaoEmbaralhado = document.getElementById("botaoEmbaralhado")
+      botaoEmbaralhado.addEventListener("click", embaralhado) 
+
+   </script>
+
+</html>
