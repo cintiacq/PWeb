@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+      <meta charset="UTF-8">      
+   </head>
+
+   <body>
+      <div>
+         <button id="botaoCarregar">Carregando cervejas...</button>
+         <table id="cervejasDiv" border="1px"></table>
+      </div>
+
+   </body>   
+
+   <script>
+
+      let cervejas = [
+         {
+            name: "Guiness",
+            alcohol: "10%",
+            ibu: "19",
+            style: "Red Ale"            
+         }, 
+
+         {
+            name: "Desperados",
+            alcohol: "6%",
+            ibu: "60",
+            style: "English IPA"             
+         }, 
+       
+         {
+            name: "Becks",
+            alcohol: "5%", 
+            ibu: "22",
+            style: "Imperial Stout"            
+         },
+         {
+            name: "Heineken"
+         }
+      ]
+
+         const carregarDiv = (cs, id = "cervejasDiv") => {
+            const div = document.getElementById(id)
+            const itemHTML = carregarRepresentacaoCabecalho() + cs.map(item => carregarRepresentacaoItem(item.name, item.alcohol, item.ibu, item.style)).join("\n")
+            div.innerHTML = itemHTML
+         }
+
+         const carregarRepresentacaoItem = (nome = "Name", alcool="Alcohol", amargor = "Ibu", estilo = "Style") => {
+            return `<tr> <td> ${nome} </td> <td> ${alcool} </td> <td> ${amargor} </td> <td> ${estilo} </td> </tr>`
+         }
+         const carregarRepresentacaoCabecalho = (nome = "Name", alcool="Alcohol", amargor = "Ibu", estilo = "Style") => {
+            return `<tr> <th> ${nome} </th> <th> ${alcool} </th> <th> ${amargor} </th> <th> ${estilo} </th> </tr>`
+         }
+
+
+      let botao = document.getElementById("botaoCarregar")
+      botao.addEventListener("click", () => carregarDiv(cervejas) )                 
+   </script>
+
+</html>
